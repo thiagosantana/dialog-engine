@@ -18,10 +18,10 @@ app.use(session({
 const engine = require('./src/core');
 
 const processMainRequest = (req, res) => {
-    console.log(req.session);
     let dialogId = req.query.dialog;
-    engine.loadDialog(dialogId);
-    res.send('ok');
+    jsonCommands = engine.loadDialog(dialogId).run();
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify(jsonCommands));
 }
 
 app.get('/', (req, res) => processMainRequest(req, res));

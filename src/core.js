@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize');
 const logger = require('./log');
+const sayFactory = require('./say');
+const machine = require('./machine');
 const sequelize = new Sequelize('postgres://santana:102005690@localhost:5432/dolores');
 
 sequelize.authenticate()
@@ -11,5 +13,10 @@ sequelize.authenticate()
     });
 
 exports.loadDialog = id => {
-    console.log('Processing dialog ' + id);
+    let activities = [
+        sayFactory.newSay(),
+        sayFactory.newSay()
+    ];
+    machine.setActivities(activities);
+    return machine;
 }

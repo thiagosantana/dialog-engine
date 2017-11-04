@@ -9,6 +9,13 @@
   "author": "Thiago Santana <thiago.santana@gmail.com> (https://thiagosantana.github.io/)",
   "license": "MIT",
   "dependencies": {
-    "express": "4.16.2"
+    "body-parser": "1.18.2",
+    "express": "4.16.2",
+    "express-session": "1.15.6",
+    "pg": "7.3.0",
+    "pg-hstore": "2.3.2",
+    "sequelize": "4.22.1",
+    "uuid": "3.1.0",
+    "winston": "2.4.0"
   }
 }

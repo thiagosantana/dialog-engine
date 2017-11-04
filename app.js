@@ -1,9 +1,24 @@
 const express = require('express');
+const session = require('express-session')
+const uuidv4 = require('uuid/v4');
 const app = express();
+
+app.use(session({
+    secret: '@n@l1v1@',
+    genid: req => {
+        return uuidv4(); // use UUIDs for session IDs
+    },
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 60000
+    }
+}));
 
 const engine = require('./src/core');
 
 const processMainRequest = (req, res) => {
+    console.log(req.session);
     let dialogId = req.query.dialog;
     engine.loadDialog(dialogId);
     res.send('ok');
